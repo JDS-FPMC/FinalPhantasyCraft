@@ -1,0 +1,7 @@
+name: Final Phantasy Craft
+main:  com.catreina.plugins.finalphantasycraft.FinalPhantasyCraft
+version: 0.0.1a
+author: Catreina
+website: https://catreina.com
+description: Spigot server plugin for fpc.catreina.com minecraft server
+depend: [SkillAPI]
