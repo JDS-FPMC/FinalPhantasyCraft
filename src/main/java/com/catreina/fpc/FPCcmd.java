@@ -25,15 +25,14 @@ public final class FPCcmd implements CommandExecutor {
         Player p = (Player) s;
 
         // The only time a player can use /aspectConfig is if they have the assigned permission
-        if (!p.hasPermission("PhantasyCraft.AspectConfig")) {
+        if (!p.hasPermission("phantasycraft.aspectconfig")) {
           // No permission
           p.sendMessage("You do not have access to " + cmd + " (permission missing: PhantasyCraft.AspectConfig");
           return true;
         } else {
           // They have permission, continue with setup
 
-          // GET the SkillAPI data
-          fpc.GetSkillAPIData(p);
+          p.sendMessage("You have permission!");
           return true;
         }
 

@@ -4,19 +4,48 @@ import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import org.bukkit.entity.Player;
 
-public final class FPCSkill extends SkillAPI {
+public final class FPCSkill {
 
-  public int aspectAptitude;
-  public int aspectCompetence;
-  public int aspectResilience;
-  public int aspectGrowth;
-  public int aspectConviction;
+  /*
+  int AspectAptitude;
+  int AspectCompetence;
+  int AspectResilience;
+  int AspectGrowth;
+  int AspectConviction;
+  */
 
-  public FPCSkill(Player p) {
+  Player player;
+  PlayerData playerData;
 
-    PlayerData playerData = SkillAPI.getPlayerData(p);
-    p.sendMessage("Hi there " + playerData.getPlayerName());
-    p.sendMessage("You have Aptitude of " + playerData.getAttribute("Aptitude"));
+  FPCSkill(Player p) {
+    // Get Player Data for attribute information
+    this.playerData = SkillAPI.getPlayerData(p);
+    this.player = p;
+
+    /*
+    // Get players attribute values
+    AspectAptitude =  playerData.getInvestedAttribute("aptitude");
+    AspectResilience =  playerData.getInvestedAttribute("resilience");
+    AspectCompetence =  playerData.getInvestedAttribute("competence");
+    AspectGrowth =  playerData.getInvestedAttribute("growth");
+    AspectConviction =  playerData.getInvestedAttribute("conviction");
+    */
   }
 
+  String getAspect(String key) {
+
+    // Gets the aspect related to the passed key
+    if (playerData.hasAttribute(key)) {
+      return String.valueOf(playerData.getInvestedAttribute(key));
+    }
+    return "";
+  }
+
+  int getAspectVal(String key) {
+    // Gets the aspect related to the passed key
+    if (playerData.hasAttribute(key)) {
+      return playerData.getInvestedAttribute(key);
+    }
+    return 0;
+  }
 }

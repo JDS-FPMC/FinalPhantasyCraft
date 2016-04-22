@@ -16,19 +16,39 @@ public final class FPCPlaceholders extends EZPlaceholderHook {
   }
 
   @Override
-  public String onPlaceholderRequest(Player p, String string) {
-    // Placeholder: %phantasycraft_
-    return "";
+  public String onPlaceholderRequest(Player p, String id) {
+    // Get SkillAPI information
+    FPCSkill fpcSkill = fpc.fpcSkill;
+
+    if (p == null) return "";
+
+    // placeholder: %phantasycraft_aspect_aptitude%
+    if (id.equals("aspect_aptitude")) {
+      p.sendMessage("sending getAspect(\"" + id + "\")");
+
+      return String.valueOf(fpcSkill.getAspect("aptitude"));
+    }
+
+    // placeholder: %phantasycraft_aspect_resilience%
+    if (id.equals("aspect_resilience")) {
+      return String.valueOf(fpcSkill.getAspect("resilience"));
+    }
+
+    // placeholder: %phantasycraft_aspect_competence%
+    if (id.equals("aspect_competence")) {
+      return String.valueOf(fpcSkill.getAspect("competence"));
+    }
+
+    // placeholder: %phantasycraft_aspect_aptitude%
+    if (id.equals("aspect_growth")) {
+      return String.valueOf(fpcSkill.getAspect("Growth"));
+    }
+
+    // placeholder: %phantasycraft_aspect_conviction%
+    if (id.equals("aspect_conviction")) {
+      return String.valueOf(fpcSkill.getAspect("conviction"));
+    }
+
+    return "Unknown Placeholder: " + id;
   }
-
-  public void onEnable() {
-    // Fires when minecraft starts up / loads the plugin
-
-  }
-
-  public void onDisable() {
-    // Fires when Minecraft shuts down / unloads the plugin
-
-  }
-
 }

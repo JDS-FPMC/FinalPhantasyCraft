@@ -1,6 +1,8 @@
 package com.catreina.fpc;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
    this time, that is all it is used for.
 */
 
-public final class FinalPhantasyCraft extends JavaPlugin {
+public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
   /*=========================================================================
   =
@@ -24,7 +26,7 @@ public final class FinalPhantasyCraft extends JavaPlugin {
   private PluginDescriptionFile pdfFile = getDescription();
   private String AuthorName = "Catreina";
 
-  public FPCSkill fpcSkill;
+  FPCSkill fpcSkill;
 
   /*=========================================================================
   =
@@ -46,12 +48,12 @@ public final class FinalPhantasyCraft extends JavaPlugin {
 
 
 
-  public boolean GetSkillAPIData(Player p) {
+  public void GetSkillAPIData(Player p) {
     // If we found player data, return true
     this.fpcSkill = new FPCSkill(p);
-
-    return true;
   }
+
+
   /*=========================================================================
   =
   =
@@ -86,14 +88,28 @@ public final class FinalPhantasyCraft extends JavaPlugin {
   public void onEnable() {
     // Fires when Minecraft loads the plugin
 
+    // Register listener
+    getServer().getPluginManager().registerEvents(this, this);
+
     // Need to register a listener, so we can do our thing
     this.getCommand("aspectConfig").setExecutor(new FPCcmd(this));
 
-    // TODO: Events when the plugin is loaded
+    // Check for PlaceholderAPI
+    if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+      new FPCPlaceholders(this).hook();
+    } else {
+      throw new RuntimeException("PlaceholderAPI not found...");
+    }
 
+    // Check for SkillAPI
+    if (!(Bukkit.getPluginManager().isPluginEnabled("SkillAPI"))) {
+      throw new RuntimeException("SkillAPI not found...");
+    }
 
-    // print out that we finished enabling the plugin
-    getLogger().info("onEnable fired in " + pdfFile.getName());
+    // Get Player Data for all online players
+    for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+      GetSkillAPIData(p);
+    }
   }
 
   @Override
