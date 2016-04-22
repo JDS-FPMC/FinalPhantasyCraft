@@ -1,7 +1,6 @@
-package com.catreina.plugins.finalphantasycraft;
+package com.catreina.fpc;
 
-import com.sucy.skill.SkillAPI;
-import com.sucy.skill.api.SkillPlugin;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
    this time, that is all it is used for.
 */
 
-public final class FinalPhantasyCraft extends JavaPlugin implements SkillPlugin {
+public final class FinalPhantasyCraft extends JavaPlugin {
 
   /*=========================================================================
   =
@@ -23,26 +22,60 @@ public final class FinalPhantasyCraft extends JavaPlugin implements SkillPlugin 
   =========================================================================*/
 
   private PluginDescriptionFile pdfFile = getDescription();
+  private String AuthorName = "Catreina";
+
+  public FPCSkill fpcSkill;
 
   /*=========================================================================
   =
-  =  We need to be able to access different values from SkillAPI and set our
-  =  Placeholder text with PlaceholderAPI.
+  =  Player clicks sign for Aspects
+  =     -- "/aspectConfig" issued by player through serversigns
+  =     -- permission required:  phantasycraft.aspectConfig
+  =        -- this allows us to grant permission to players buying
+  =        -- an Aspect reset.
   =
-  =  We can also see about making an attachment to DeluxeMenus, but that
-  =  may be unnecessary so long as our commands are working
+  =     -- After aspectConfig has completed initializing values for the
+  =        player, the plugin issues "/dm aspectConfig player" to launch
+  =        DeluxeMenus in the players context.
+  =
+  =========================================================================*/
+
+
+
+
+
+
+
+  public boolean GetSkillAPIData(Player p) {
+    // If we found player data, return true
+    this.fpcSkill = new FPCSkill(p);
+
+    return true;
+  }
+  /*=========================================================================
+  =
+  =
   =
   =========================================================================*/
 
 
   /*=========================================================================
   =
-  =  Set up our SkillAPI Skills and Classes
+  =  Common functions for plugin information
   =
   =========================================================================*/
-  public void registerSkills(SkillAPI api) {}
-  public void registerClasses(SkillAPI api) {}
 
+  public String getAuthor() {
+    return AuthorName;
+  }
+
+  public String getPlugin() {
+    return pdfFile.getName();
+  }
+
+  public String getVersion() {
+    return pdfFile.getVersion();
+  }
 
   /*=========================================================================
   =
@@ -53,7 +86,11 @@ public final class FinalPhantasyCraft extends JavaPlugin implements SkillPlugin 
   public void onEnable() {
     // Fires when Minecraft loads the plugin
 
+    // Need to register a listener, so we can do our thing
+    this.getCommand("aspectConfig").setExecutor(new FPCcmd(this));
+
     // TODO: Events when the plugin is loaded
+
 
     // print out that we finished enabling the plugin
     getLogger().info("onEnable fired in " + pdfFile.getName());
@@ -66,7 +103,7 @@ public final class FinalPhantasyCraft extends JavaPlugin implements SkillPlugin 
     // TODO: Cleanup and finalization
 
     // print out that we finished disabling the plugin
-    getLogger().info("onEnable fired in " + pdfFile.getName());
+    getLogger().info("onDisable fired in " + pdfFile.getName());
 
   }
 }
