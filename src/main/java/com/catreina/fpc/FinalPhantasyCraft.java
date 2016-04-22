@@ -1,5 +1,6 @@
 package com.catreina.fpc;
 
+import com.sucy.skill.api.classes.RPGClass;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -26,7 +27,7 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
   private PluginDescriptionFile pdfFile = getDescription();
   private String AuthorName = "Catreina";
 
-  FPCSkill fpcSkill;
+  public FPCSkill fpcSkill;
 
   /*=========================================================================
   =
@@ -46,12 +47,6 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
 
 
-
-
-  public void GetSkillAPIData(Player p) {
-    // If we found player data, return true
-    this.fpcSkill = new FPCSkill(p);
-  }
 
 
   /*=========================================================================
@@ -108,7 +103,17 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
     // Get Player Data for all online players
     for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-      GetSkillAPIData(p);
+      fpcSkill = new FPCSkill(p);
+      RPGClass UnAwakened = new UnAwakened();
+
+      // If a player is new to the server, they will not have professed into
+      // any race/class/etc.
+      //
+      // If so, force profess into default
+      if (fpcSkill.playerData.canProfess(UnAwakened)) {
+        fpcSkill.playerData.profess(UnAwakened);
+      }
+
     }
   }
 

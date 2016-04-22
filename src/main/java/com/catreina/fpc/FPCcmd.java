@@ -24,6 +24,8 @@ public final class FPCcmd implements CommandExecutor {
         // Cast the sender as a player
         Player p = (Player) s;
 
+        p.sendMessage("You have " + fpc.fpcSkill.getInvestedAspect("Aptitude") + " Aptitude");
+
         // The only time a player can use /aspectConfig is if they have the assigned permission
         if (!p.hasPermission("phantasycraft.aspectconfig")) {
           // No permission

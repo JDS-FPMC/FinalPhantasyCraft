@@ -4,7 +4,7 @@ import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.player.PlayerData;
 import org.bukkit.entity.Player;
 
-public final class FPCSkill {
+public class FPCSkill {
 
   /*
   int AspectAptitude;
@@ -19,8 +19,8 @@ public final class FPCSkill {
 
   FPCSkill(Player p) {
     // Get Player Data for attribute information
-    this.playerData = SkillAPI.getPlayerData(p);
     this.player = p;
+    SetPlayerData(p);
 
     /*
     // Get players attribute values
@@ -32,20 +32,18 @@ public final class FPCSkill {
     */
   }
 
-  String getAspect(String key) {
+   private void SetPlayerData(Player p) {
+    // If we found player data, return true
+    this.playerData = SkillAPI.getPlayerData(p);
+  }
+
+  String getInvestedAspect(String key) {
 
     // Gets the aspect related to the passed key
     if (playerData.hasAttribute(key)) {
+      player.sendMessage("Checking for " + key + " -- " + playerData.getPlayerName());
       return String.valueOf(playerData.getInvestedAttribute(key));
     }
     return "";
-  }
-
-  int getAspectVal(String key) {
-    // Gets the aspect related to the passed key
-    if (playerData.hasAttribute(key)) {
-      return playerData.getInvestedAttribute(key);
-    }
-    return 0;
   }
 }

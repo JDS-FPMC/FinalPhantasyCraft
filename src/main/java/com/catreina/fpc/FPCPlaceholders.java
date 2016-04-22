@@ -3,7 +3,7 @@ package com.catreina.fpc;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
 import org.bukkit.entity.Player;
 
-public final class FPCPlaceholders extends EZPlaceholderHook {
+public class FPCPlaceholders extends EZPlaceholderHook {
 
   private FinalPhantasyCraft fpc;
 
@@ -17,36 +17,34 @@ public final class FPCPlaceholders extends EZPlaceholderHook {
 
   @Override
   public String onPlaceholderRequest(Player p, String id) {
-    // Get SkillAPI information
-    FPCSkill fpcSkill = fpc.fpcSkill;
-
     if (p == null) return "";
+
+    // Get SkillAPI information
+    FPCSkill fpcSkill = new FPCSkill(p);
 
     // placeholder: %phantasycraft_aspect_aptitude%
     if (id.equals("aspect_aptitude")) {
-      p.sendMessage("sending getAspect(\"" + id + "\")");
-
-      return String.valueOf(fpcSkill.getAspect("aptitude"));
+      return fpcSkill.getInvestedAspect("aptitude");
     }
 
     // placeholder: %phantasycraft_aspect_resilience%
     if (id.equals("aspect_resilience")) {
-      return String.valueOf(fpcSkill.getAspect("resilience"));
+      return fpcSkill.getInvestedAspect("resilience");
     }
 
     // placeholder: %phantasycraft_aspect_competence%
     if (id.equals("aspect_competence")) {
-      return String.valueOf(fpcSkill.getAspect("competence"));
+      return fpcSkill.getInvestedAspect("competence");
     }
 
     // placeholder: %phantasycraft_aspect_aptitude%
     if (id.equals("aspect_growth")) {
-      return String.valueOf(fpcSkill.getAspect("Growth"));
+      return fpcSkill.getInvestedAspect("Growth");
     }
 
     // placeholder: %phantasycraft_aspect_conviction%
     if (id.equals("aspect_conviction")) {
-      return String.valueOf(fpcSkill.getAspect("conviction"));
+      return fpcSkill.getInvestedAspect("conviction");
     }
 
     return "Unknown Placeholder: " + id;
