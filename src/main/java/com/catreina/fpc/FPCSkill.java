@@ -3,7 +3,6 @@ package com.catreina.fpc;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.classes.RPGClass;
 import com.sucy.skill.api.player.PlayerData;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -40,12 +39,11 @@ public class FPCSkill {
     ItemStack iconClassLore = iconClass.getIcon();
     List iconLore = iconClassLore.getItemMeta().getLore();
 
-    // Convert lore list into string for PlaceholderAPI
-    String lore = StringUtils.join(iconLore, "\n");
+    player.sendMessage(iconClassLore.getItemMeta().toString());
 
     // And send away
-    player.sendMessage(lore);
-    return lore;
+    // player.sendMessage(lore);
+    return "NO?? ";
 /*
     if (iconClass != null) {
       return iconClass.getIcon().getItemMeta().getLore().toString();

@@ -11,17 +11,18 @@ import java.util.ArrayList;
 
 public class UnAwakened extends RPGClass {
 
-  private static final ItemStack ICON = new ItemStack(Material.SKULL) {{
+  // You can set up the icon with descriptive text as well
+  private static final ItemStack ICON = new ItemStack(Material.POTION) {{
     ItemMeta meta = ICON.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD  + "UnAwakened");
-    meta.setLore(new ArrayList<String>() {{
+    meta.setDisplayName(ChatColor.GOLD + "Alchemist");
+    meta.setLore(new ArrayList() {{
       add("");
-      add(ChatColor.GOLD + "The UnAwakened are the roaming spirits");
-      add(ChatColor.GOLD + "that inhabit Velandred. You are one such");
-      add(ChatColor.GOLD + "spirit, ready to find your way home, to");
-      add(ChatColor.GOLD + "awakened into the world");
-      add("");
+      add(ChatColor.GRAY + "A hybrid between offense");
+      add(ChatColor.GRAY + "and support, the alchemist");
+      add(ChatColor.GRAY + "uses potions to apply AOE");
+      add(ChatColor.GRAY + "debilitation and healing.");
     }});
+    setItemMeta(meta);
   }};
 
   public UnAwakened() {
@@ -34,8 +35,29 @@ public class UnAwakened extends RPGClass {
     setManaName("-");
     setManaRegen(0);
 
-    // TODO: Add Skills
-
   }
 
+  private static ItemStack createIconMeta() {
+    // We have to create the icon meta in the ICON initialization,
+    // and the setup on SkillAPI's wiki is not working.
+    //
+    // So we do it ourselves.
+    ItemStack ICON = new ItemStack(Material.SKULL);
+    ItemMeta meta = ICON.getItemMeta();
+    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "UnAwakened");
+    meta.setLore(new ArrayList<String>() {{
+      add("");
+      add(ChatColor.GOLD + "The UnAwakened are the roaming spirits");
+      add(ChatColor.GOLD + "that inhabit Velandred. You are one such");
+      add(ChatColor.GOLD + "spirit, ready to find your way home, to");
+      add(ChatColor.GOLD + "awakened into the world");
+      add("");
+    }});
+    ICON.setItemMeta(meta);
+
+    // And return the ICON to the variable initialization call
+    return ICON;
+  }
+
+  // TODO: Add Skills
 }
