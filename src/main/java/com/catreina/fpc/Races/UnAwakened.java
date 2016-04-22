@@ -1,4 +1,4 @@
-package com.catreina.fpc;
+package com.catreina.fpc.Races;
 
 import com.sucy.skill.api.classes.ClassAttribute;
 import com.sucy.skill.api.classes.RPGClass;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class UnAwakened extends RPGClass {
 
-  private static final ItemStack ICON = new ItemStack(Material.BEACON) {{
+  private static final ItemStack ICON = new ItemStack(Material.SKULL) {{
     ItemMeta meta = ICON.getItemMeta();
     meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD  + "UnAwakened");
-    meta.setLore(new ArrayList() {{
+    meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "The UnAwakened are the roaming spirits");
       add(ChatColor.GOLD + "that inhabit Velandred. You are one such");
@@ -25,7 +25,7 @@ public class UnAwakened extends RPGClass {
   }};
 
   public UnAwakened() {
-    super("UnAwakened", ICON, 1, "UnAwakened", "");
+    super("UnAwakened", ICON, 1, "race", "");
 
     settings.set(ClassAttribute.HEALTH, 1, 0);
     settings.set(ClassAttribute.MANA, 0, 0);
@@ -33,7 +33,6 @@ public class UnAwakened extends RPGClass {
     setPrefix(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "UnAwakened");
     setManaName("-");
     setManaRegen(0);
-    setAllowedExpSources();
 
     // TODO: Add Skills
 

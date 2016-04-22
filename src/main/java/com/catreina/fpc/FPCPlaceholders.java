@@ -17,36 +17,29 @@ public class FPCPlaceholders extends EZPlaceholderHook {
 
   @Override
   public String onPlaceholderRequest(Player p, String id) {
+    FPCPlayer fpcPlayer;
+    FPCSkill fpcSkill;
+
     if (p == null) return "";
 
-    // Get SkillAPI information
-    FPCSkill fpcSkill = new FPCSkill(p);
+    // Get player data
+    fpcPlayer = new FPCPlayer(p);
+    fpcSkill = fpcPlayer.getPlayerSkillData();
 
-    // placeholder: %phantasycraft_aspect_aptitude%
-    if (id.equals("aspect_aptitude")) {
-      return fpcSkill.getInvestedAspect("aptitude");
+    String phCategory = id.substring(0, id.indexOf("_"));
+    String phValue = id.substring(phCategory.length() + 1);
+
+    switch (phCategory) {
+      case "aspect":
+        // placeholder: %phantasycraft_aspect_*%
+        return fpcSkill.getAspect(phValue);
+
+      case "racelore":
+        // placeholder: %phantasycraft_racelore_*%
+        return fpcSkill.getClassLore(phValue.toLowerCase());
+
+      default:
+        return "UNKNOWN PLACEHOLDER: " + id;
     }
-
-    // placeholder: %phantasycraft_aspect_resilience%
-    if (id.equals("aspect_resilience")) {
-      return fpcSkill.getInvestedAspect("resilience");
-    }
-
-    // placeholder: %phantasycraft_aspect_competence%
-    if (id.equals("aspect_competence")) {
-      return fpcSkill.getInvestedAspect("competence");
-    }
-
-    // placeholder: %phantasycraft_aspect_aptitude%
-    if (id.equals("aspect_growth")) {
-      return fpcSkill.getInvestedAspect("Growth");
-    }
-
-    // placeholder: %phantasycraft_aspect_conviction%
-    if (id.equals("aspect_conviction")) {
-      return fpcSkill.getInvestedAspect("conviction");
-    }
-
-    return "Unknown Placeholder: " + id;
   }
 }

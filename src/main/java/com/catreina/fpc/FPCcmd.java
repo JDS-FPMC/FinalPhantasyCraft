@@ -5,9 +5,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public final class FPCcmd implements CommandExecutor {
+public class FPCcmd implements CommandExecutor {
 
-  private final FinalPhantasyCraft fpc;
+  private FinalPhantasyCraft fpc;
+  private FPCPlayer fpcPlayer;
+  private FPCSkill fpcSkill;
 
   // Constructor
   public FPCcmd(FinalPhantasyCraft fpc) {
@@ -24,7 +26,7 @@ public final class FPCcmd implements CommandExecutor {
         // Cast the sender as a player
         Player p = (Player) s;
 
-        p.sendMessage("You have " + fpc.fpcSkill.getInvestedAspect("Aptitude") + " Aptitude");
+        p.sendMessage("You have " + fpcSkill.getAspect("Aptitude") + " Aptitude");
 
         // The only time a player can use /aspectConfig is if they have the assigned permission
         if (!p.hasPermission("phantasycraft.aspectconfig")) {

@@ -1,9 +1,13 @@
 package com.catreina.fpc;
 
-import com.sucy.skill.api.classes.RPGClass;
+import com.catreina.fpc.Races.UnAwakened;
+import com.sucy.skill.SkillAPI;
+import com.sucy.skill.api.SkillPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,7 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
    this time, that is all it is used for.
 */
 
-public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
+public final class FinalPhantasyCraft extends JavaPlugin implements Listener, SkillPlugin {
 
   /*=========================================================================
   =
@@ -26,8 +30,6 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
   private PluginDescriptionFile pdfFile = getDescription();
   private String AuthorName = "Catreina";
-
-  public FPCSkill fpcSkill;
 
   /*=========================================================================
   =
@@ -47,14 +49,22 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
 
 
-
-
   /*=========================================================================
   =
-  =
+  = SkillAPI interface for classes and skills added to system
   =
   =========================================================================*/
 
+  @Override
+  public void registerSkills(SkillAPI skillAPI) {
+    // TODO: Add Skills
+  }
+
+  @Override
+  public void registerClasses(SkillAPI skillAPI) {
+    // TODO: Add classes
+    skillAPI.addClass(new UnAwakened());
+  }
 
   /*=========================================================================
   =
@@ -72,6 +82,19 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
   public String getVersion() {
     return pdfFile.getVersion();
+  }
+
+  /*=========================================================================
+  =
+  =  bukkit/spigot hooks
+  =
+  =========================================================================*/
+  @EventHandler
+  public void onJoin(PlayerJoinEvent event) {
+    Player p = event.getPlayer();
+    if (p != null) {
+      FPCPlayer fpcPlayer = new FPCPlayer(p);
+    }
   }
 
   /*=========================================================================
@@ -103,17 +126,11 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener {
 
     // Get Player Data for all online players
     for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-      fpcSkill = new FPCSkill(p);
-      RPGClass UnAwakened = new UnAwakened();
-
-      // If a player is new to the server, they will not have professed into
-      // any race/class/etc.
-      //
-      // If so, force profess into default
-      if (fpcSkill.playerData.canProfess(UnAwakened)) {
-        fpcSkill.playerData.profess(UnAwakened);
+      if (p != null) {
+        FPCPlayer fpcPlayer = new FPCPlayer(p);
       }
 
+      // TODO: save player class into hashmap table UUID<==>FPCPlayer instance
     }
   }
 
