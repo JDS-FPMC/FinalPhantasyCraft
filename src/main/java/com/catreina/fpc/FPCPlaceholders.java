@@ -34,9 +34,17 @@ public class FPCPlaceholders extends EZPlaceholderHook {
         // placeholder: %phantasycraft_aspect_*%
         return fpcSkill.getAspect(phValue);
 
+/*      case "aspectbase":
+        // placeholder: %phantasycraft_aspect_*%
+        return fpcSkill.getInvestedAspect(phValue);
+*/
       case "racelore":
         // placeholder: %phantasycraft_racelore_*%
-        return fpcSkill.getClassLore(phValue.toLowerCase());
+        return fpcSkill.getRaceLore(phValue.toLowerCase());
+
+      case "raceloredisplayname":
+        // placeholder: %phantasycraft_raceloredisplayname_*%
+        return fpcSkill.getRaceLoreDisplayName(phValue.toLowerCase());
 
       default:
         return "UNKNOWN PLACEHOLDER: " + id;

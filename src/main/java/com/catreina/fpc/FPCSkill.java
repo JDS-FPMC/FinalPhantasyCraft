@@ -29,27 +29,59 @@ public class FPCSkill {
     if (playerData.hasAttribute(aspect)) {
       return String.valueOf(playerData.getAttribute(aspect));
     }
-    return "UNK ASPECT: " + aspect;
+    return "INVALID ASPECT: " + aspect;
   }
 
-  String getClassLore(String race){
-    // Get the SkillAPI class for the passed race
-    // if it doesn't exist, a null is returned to us
-    RPGClass iconClass = SkillAPI.getClass(race);
-    ItemStack iconClassLore = iconClass.getIcon();
-    List iconLore = iconClassLore.getItemMeta().getLore();
+  String getRaceLore(String race) {
+    // Get the icon associated with passed "race" value
 
-    player.sendMessage(iconClassLore.getItemMeta().toString());
+    RPGClass rpgClass;
+    if (SkillAPI.isClassRegistered(race)) {
+      rpgClass = SkillAPI.getClass(race);
 
-    // And send away
-    // player.sendMessage(lore);
-    return "NO?? ";
-/*
-    if (iconClass != null) {
-      return iconClass.getIcon().getItemMeta().getLore().toString();
+      ItemStack itemStack = rpgClass.getIcon();
+      String lore = "";
+
+      // Make sure the Class Lore actually has metadata and lore
+      if (itemStack.hasItemMeta() && itemStack.getItemMeta().hasLore()) {
+        List<String> iconLore = itemStack.getItemMeta().getLore();
+
+        // We have lore. Replace color code numbers
+        // iconLore.replaceAll(s -> ChatColor.translateAlternateColorCodes('&', s));
+
+        for (String line : iconLore) {
+          lore = lore + line + "\n";
+        }
+
+      }
+      // And send it back
+      return lore;
+
     } else {
-      return "UNK CLASS: " + race;
+      // Passed class is not a valid race
+      return "INVALID RACE: " + race;
+
     }
-*/
+  }
+
+  String getRaceLoreDisplayName(String race) {
+    // Get the class icon associated with passed "race" value
+    if (SkillAPI.isClassRegistered(race)) {
+      RPGClass rpgClass = SkillAPI.getClass(race);
+      ItemStack itemStack = rpgClass.getIcon();
+
+      // Initialize displayName
+      String displayName = "";
+
+      // Make sure the Class Lore actually has metadata and lore
+      if (itemStack.hasItemMeta()) {
+        displayName = itemStack.getItemMeta().getDisplayName();
+      }
+
+      // And send it back
+      return displayName;
+    } else {
+      return "INVALID RACE: " + race;
+    }
   }
 }

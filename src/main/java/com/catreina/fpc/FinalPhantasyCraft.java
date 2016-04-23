@@ -1,6 +1,7 @@
 package com.catreina.fpc;
 
-import com.catreina.fpc.Races.UnAwakened;
+import com.catreina.fpc.SubRace.CerqianEterna;
+import com.catreina.fpc.SubRace.VoidCerqian;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.SkillPlugin;
 import org.bukkit.Bukkit;
@@ -10,6 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.catreina.fpc.Race.Cerqian;
+import com.catreina.fpc.Race.UnAwakened;
 
 /*
   Final Phantasy Craft - Controller
@@ -64,6 +68,10 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
   public void registerClasses(SkillAPI skillAPI) {
     // TODO: Add classes
     skillAPI.addClass(new UnAwakened());
+    skillAPI.addClass(new Cerqian());
+    skillAPI.addClass(new CerqianEterna());
+    skillAPI.addClass(new VoidCerqian());
+
   }
 
   /*=========================================================================
