@@ -1,7 +1,9 @@
 package com.catreina.fpc;
 
-import com.catreina.fpc.SubRace.CerqianEterna;
-import com.catreina.fpc.SubRace.VoidCerqian;
+import com.catreina.fpc.skillapi.FPCPlayer;
+import com.catreina.fpc.skillapi.race.*;
+import com.catreina.fpc.skillapi.race.subrace.*;
+import com.catreina.fpc.hooks.FPCPlaceholders;
 import com.sucy.skill.SkillAPI;
 import com.sucy.skill.api.SkillPlugin;
 import org.bukkit.Bukkit;
@@ -11,9 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.catreina.fpc.Race.Cerqian;
-import com.catreina.fpc.Race.UnAwakened;
 
 /*
   Final Phantasy Craft - Controller
@@ -55,22 +54,46 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
 
   /*=========================================================================
   =
-  = SkillAPI interface for classes and skills added to system
+  = skillapi interface for classes and skills added to system
   =
   =========================================================================*/
 
   @Override
   public void registerSkills(SkillAPI skillAPI) {
-    // TODO: Add Skills
+    // TODO: Add skill
   }
 
   @Override
   public void registerClasses(SkillAPI skillAPI) {
-    // TODO: Add classes
+    // Add the UnAwakened base race
     skillAPI.addClass(new UnAwakened());
+
+    // Add the Cerqians
     skillAPI.addClass(new Cerqian());
     skillAPI.addClass(new CerqianEterna());
     skillAPI.addClass(new VoidCerqian());
+
+    // Add the Espers
+    skillAPI.addClass(new Esper());
+    skillAPI.addClass(new EsperDeacon());
+    skillAPI.addClass(new SpectralEsper());
+
+    // Add the Humans
+    skillAPI.addClass(new Human());
+    skillAPI.addClass(new AlphaPrime());
+    skillAPI.addClass(new OmegaReborn());
+
+    // Add the Cetra
+    skillAPI.addClass(new Cetra());
+    skillAPI.addClass(new CetraSoothsayer());
+    skillAPI.addClass(new CetraIsangoma());
+
+    // Add the Warforged
+    skillAPI.addClass(new Warforged());
+    skillAPI.addClass(new WarforgedAment());
+    skillAPI.addClass(new WarforgedAndroid());
+
+    // TODO: Add classes that races can profess into
 
   }
 
@@ -117,19 +140,22 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
     // Register listener
     getServer().getPluginManager().registerEvents(this, this);
 
-    // Need to register a listener, so we can do our thing
-    this.getCommand("aspectConfig").setExecutor(new FPCcmd(this));
+    if (Bukkit.getPluginManager().isPluginEnabled("MCCore")) {
+      // So long as skillapi is found, MCCore will be also. We still
+      // need to check separately however.
+      FPCcmd cmd = new FPCcmd(this);
+    }
+
+    // Check for skillapi
+    if (!(Bukkit.getPluginManager().isPluginEnabled("skillapi"))) {
+      throw new RuntimeException("skillapi not found...");
+    }
 
     // Check for PlaceholderAPI
     if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
       new FPCPlaceholders(this).hook();
     } else {
       throw new RuntimeException("PlaceholderAPI not found...");
-    }
-
-    // Check for SkillAPI
-    if (!(Bukkit.getPluginManager().isPluginEnabled("SkillAPI"))) {
-      throw new RuntimeException("SkillAPI not found...");
     }
 
     // Get Player Data for all online players
@@ -147,9 +173,6 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
     // Fires when Mincraft unloads the plugin
 
     // TODO: Cleanup and finalization
-
-    // print out that we finished disabling the plugin
-    getLogger().info("onDisable fired in " + pdfFile.getName());
 
   }
 }

@@ -4,10 +4,10 @@ version: 0.0.1a
 author: Catreina
 website: https://catreina.com
 description: Spigot server plugin for fpc.catreina.com minecraft server
-depend: [SkillAPI, PlaceholderAPI]
+depend: [skillapi, PlaceholderAPI]
 commands:
   aspectConfig:
     description: Loads Aspect Configuration for new players or purchased Aspect resets
     usage: /AspectConfig
     permission: phantasycraft.aspectconfig
-    permission-message: <command> can only be accessed by new players or with the purchase of an Aspect reset.
+    permission-message: AspectConfig can only be accessed by new players or with the purchase of an Aspect reset.
