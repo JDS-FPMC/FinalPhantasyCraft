@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.UUID;
 
-public final class FacetMgr {
+public final class FPCFacetMgr {
 
   private int Dm, Ma, At, Ts, Sd;
   private int Ds, St, Ta, Am, Md;
@@ -13,7 +13,7 @@ public final class FacetMgr {
   private UUID pUUID;
   private HashMap<String, Integer> facetVals;
 
-  public FacetMgr(Player p) {
+  public FPCFacetMgr(Player p) {
     pUUID = p.getUniqueId();
 
     if (!facetVals.isEmpty()) {

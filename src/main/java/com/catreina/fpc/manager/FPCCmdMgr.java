@@ -1,15 +1,16 @@
-package com.catreina.fpc;
+package com.catreina.fpc.manager;
 
+import com.catreina.fpc.FinalPhantasyCraft;
 import com.catreina.fpc.commands.CmdLinConfig;
 import com.rit.sucy.commands.ConfigurableCommand;
 import com.rit.sucy.commands.SenderType;
 
-public class FPCcmd {
+public class FPCCmdMgr {
 
   private FinalPhantasyCraft fpc;
 
   // Constructor
-  public FPCcmd(FinalPhantasyCraft fpc) {
+  public FPCCmdMgr(FinalPhantasyCraft fpc) {
     // Save parent class, register commands for plugin
     // through MCCore's 'commands' classes
     this.fpc = fpc;

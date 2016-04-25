@@ -1,5 +1,6 @@
 package com.catreina.fpc;
 
+import com.catreina.fpc.manager.FPCCmdMgr;
 import com.catreina.fpc.skillapi.FPCPlayer;
 import com.catreina.fpc.skillapi.race.*;
 import com.catreina.fpc.skillapi.race.subrace.*;
@@ -143,7 +144,7 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
     if (Bukkit.getPluginManager().isPluginEnabled("MCCore")) {
       // So long as skillapi is found, MCCore will be also. We still
       // need to check separately however.
-      FPCcmd cmd = new FPCcmd(this);
+      FPCCmdMgr cmd = new FPCCmdMgr(this);
     }
 
     // Check for skillapi
