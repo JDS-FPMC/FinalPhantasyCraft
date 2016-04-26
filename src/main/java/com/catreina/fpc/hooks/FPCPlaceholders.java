@@ -9,9 +9,7 @@ import org.bukkit.entity.Player;
 public class FPCPlaceholders extends EZPlaceholderHook {
 
   private FinalPhantasyCraft fpc;
-  private FPCRace fpcRace;
-
-  private String UNKPLACEHOLDER = "UNKNOWN PLACEHOLDER: ";
+  private FPCPlayer fpcPlayer;
 
   public FPCPlaceholders(FinalPhantasyCraft fpc) {
     // Registering the fpc placeholder
@@ -23,25 +21,34 @@ public class FPCPlaceholders extends EZPlaceholderHook {
 
   @Override
   public String onPlaceholderRequest(Player p, String id) {
-    FPCPlayer fpcPlayer;
-
     if (p == null) return "";
 
     // Get player data
     fpcPlayer = new FPCPlayer(p);
+    FPCRace fpcRace = new FPCRace();
 
-    String phCategory = id.substring(0, id.indexOf("_"));
-    String phValue = id.substring(phCategory.length() + 1);
+    String phCategory = (id.contains("_") ? id.substring(0, id.indexOf("_")) : id);
+    String phValue = (id.contains("_") ? id.substring(phCategory.length() + 1) : "");
 
     switch (phCategory) {
+      // Get players name
+      case "playername":
+        return fpcPlayer.getPlayer().getName();
+
+      // Get SkillAPI Player Information
       case "aspect":
         // placeholder: %phantasycraft_aspect_*%
         return fpcPlayer.getAspect(phValue);
 
-      case "facetsetup":
-        // placeholder: %phantasycraft_facetsetup_*%
-        return fpcPlayer.getFacetValue(phValue);
+      case "linfacetvalue":
+        // placeholder: %phantasycraft_linfacetvalue_*%
+        return fpcPlayer.getLinFacetValue(phValue.toLowerCase());
 
+      case "facettotalvalue":
+        // placeholder: %phantasycraft_facettotalvalue_*%
+        return fpcPlayer.getFacetTotalValue(phValue.toLowerCase());
+
+      // Get SkillAPI Race Information
       case "racelore":
         // placeholder: %phantasycraft_racelore_*%
         return fpcRace.getRaceLore(phValue.toLowerCase());
@@ -51,7 +58,7 @@ public class FPCPlaceholders extends EZPlaceholderHook {
         return fpcRace.getRaceLoreDisplayName(phValue.toLowerCase());
 
       default:
-        return UNKPLACEHOLDER + id;
+        return "UNKNOWN PLACEHOLDER: " + id;
     }
   }
 }

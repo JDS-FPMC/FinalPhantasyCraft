@@ -10,17 +10,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 
-public class CmdLinConfig implements IFunction {
-
-  /**
-   * Takes Dimensional => Mechanical Lin, sets DM Value
-   *  example: /fpc setLin Catreina Dm 4
-   *
-   * @params
-   *
-   * @returns
-   *
-   */
+public class CmdSetLinValue implements IFunction {
 
   public void execute(ConfigurableCommand cmd, Plugin plugin, CommandSender s, String[] args) {
     // Players cannot execute these commands
@@ -64,6 +54,12 @@ public class CmdLinConfig implements IFunction {
 
     // Everything validated - get player attributes
     HashMap<String, Integer> playerAttribs = fpcPlayer.getPlayerData().getAttributeData();
+
+    // TODO: Change this to a string reverse method
+    // Set new values to Lin attributes
+    //   - Lin strings are opposite of each other:
+    //   dm == 8   ==>   md == 0
+    //   sa == 5   ==>   as == 3
 
     // Set new values to Lin attributes
     switch (lin.toLowerCase()) {
@@ -117,8 +113,8 @@ public class CmdLinConfig implements IFunction {
 
       case "sd":
         // Player set Spiritual => Dimensional value
-        playerAttribs.put("ds", val);
-        playerAttribs.put("sd", 8 - val);
+        playerAttribs.put("sd", val);
+        playerAttribs.put("ds", 8 - val);
         break;
 
       case "ds":

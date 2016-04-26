@@ -1,7 +1,10 @@
 package com.catreina.fpc.manager;
 
 import com.catreina.fpc.FinalPhantasyCraft;
-import com.catreina.fpc.commands.CmdLinConfig;
+import com.catreina.fpc.commands.CmdConfirmFacetAllocation;
+import com.catreina.fpc.commands.CmdResetFacetAllocation;
+import com.catreina.fpc.commands.CmdSetLinValue;
+import com.rit.sucy.commands.CommandManager;
 import com.rit.sucy.commands.ConfigurableCommand;
 import com.rit.sucy.commands.SenderType;
 
@@ -23,7 +26,13 @@ public class FPCCmdMgr {
 
     // add some commands to the plugin
     ccRoot.addSubCommand(new ConfigurableCommand(fpc, "setLinValue", SenderType.CONSOLE_ONLY,
-        new CmdLinConfig(), "Sets a Lin's Facet value.", "<player> <lin> <facet>", "phantasycraft.aspectconfig"));
+        new CmdSetLinValue(), "Sets Lin's Facet", "<player> <lin> <facet>", "phantasycraft.aspectconfig"));
+    ccRoot.addSubCommand(new ConfigurableCommand(fpc, "resetFacetAllocation", SenderType.CONSOLE_ONLY,
+        new CmdResetFacetAllocation(), "Resets Lin Allocation Menu", "<player> [aspect]", "phantasycraft.aspectconfig"));
+    ccRoot.addSubCommand(new ConfigurableCommand(fpc, "confirmFacetAllocation", SenderType.CONSOLE_ONLY,
+        new CmdConfirmFacetAllocation(), "Confirms and Applies Facet Allocations", "<player>", "phantasycraft.aspectconfig"));
+
+    CommandManager.registerCommand(ccRoot);
   }
 
 }

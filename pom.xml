@@ -41,10 +41,11 @@
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
       <version>1.9.2-R0.1-SNAPSHOT</version>
-<!--      <scope>provided</scope> -->
+      <scope>provided</scope>
+<!--
       <scope>system</scope>
       <systemPath>C:/Users/Jennifer/.m2/repository/org/spigotmc/spigot-api/1.9.2-R0.1-SNAPSHOT/spigot-api-1.9.2-R0.1-20160420.120601-35.jar</systemPath>
-
+-->
     </dependency>
 
     <!-- PlaceholderAPI -->

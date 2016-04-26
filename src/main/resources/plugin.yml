@@ -4,7 +4,7 @@ version: 0.0.1a
 author: Catreina
 website: https://catreina.com
 description: Spigot server plugin for fpc.catreina.com minecraft server
-depend: [skillapi, PlaceholderAPI]
+depend: [SkillAPI, PlaceholderAPI]
 commands:
   aspectConfig:
     description: Loads Aspect Configuration for new players or purchased Aspect resets

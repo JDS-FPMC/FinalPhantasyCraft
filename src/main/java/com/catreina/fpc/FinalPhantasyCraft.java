@@ -142,14 +142,14 @@ public final class FinalPhantasyCraft extends JavaPlugin implements Listener, Sk
     getServer().getPluginManager().registerEvents(this, this);
 
     if (Bukkit.getPluginManager().isPluginEnabled("MCCore")) {
-      // So long as skillapi is found, MCCore will be also. We still
+      // So long as SkillAPI is found, MCCore will be also. We still
       // need to check separately however.
       FPCCmdMgr cmd = new FPCCmdMgr(this);
     }
 
-    // Check for skillapi
-    if (!(Bukkit.getPluginManager().isPluginEnabled("skillapi"))) {
-      throw new RuntimeException("skillapi not found...");
+    // Check for SkillAPI
+    if (!(Bukkit.getPluginManager().isPluginEnabled("SkillAPI"))) {
+      throw new RuntimeException("SkillAPI not found...");
     }
 
     // Check for PlaceholderAPI

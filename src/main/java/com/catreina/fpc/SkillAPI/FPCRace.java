@@ -10,17 +10,6 @@ public class FPCRace {
 
   private String BADRACE = "INVALID RACE: ";
 
-  public String getRaceMaxLevel(String race) {
-    RPGClass rpgClass;
-    if (SkillAPI.isClassRegistered(race)) {
-      rpgClass = SkillAPI.getClass(race);
-
-      return String.valueOf(rpgClass.getMaxLevel());
-    } else {
-      return this.invalidRace(race);
-    }
-  }
-
   public String getRaceLore(String race) {
     // Get the icon associated with passed "race" value
 

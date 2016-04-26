@@ -18,6 +18,13 @@ public class UnAwakened extends RPGClass {
     settings.set(ClassAttribute.HEALTH, 5, 0);
     settings.set(ClassAttribute.MANA, 0, 0);
 
+    // Set Aspects to zero
+    settings.set("aptitude", 1, 0);
+    settings.set("resilience", 1, 0);
+    settings.set("competence", 1, 0);
+    settings.set("growth", 1, 0);
+    settings.set("conviction", 1, 0);
+
     setPrefix(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "UnAwakened");
     setManaName("-");
     setManaRegen(0);
