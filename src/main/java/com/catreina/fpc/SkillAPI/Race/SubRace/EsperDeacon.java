@@ -45,7 +45,7 @@ public class EsperDeacon extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " Esper Deacon - Mechanical Phase ");
+    meta.setDisplayName(ChatColor.RED + " Esper Deacon - Mechanical Phase ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      While Spectral Espers focus on the Arcane ");

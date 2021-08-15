@@ -41,7 +41,7 @@ public class CetraSoothsayer extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " Cetra Soothsayer - Dimensional Phase ");
+    meta.setDisplayName(ChatColor.RED + " Cetra Soothsayer - Dimensional Phase ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      There are some Cetra who can mold their ");

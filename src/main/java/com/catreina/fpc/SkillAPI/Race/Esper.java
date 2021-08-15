@@ -24,7 +24,7 @@ public class Esper extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " The Spiritual Aspect - Espers ");
+    meta.setDisplayName(ChatColor.RED + " The Spiritual Aspect - Espers ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      The Esper people were torn from Lemaeyre - a");

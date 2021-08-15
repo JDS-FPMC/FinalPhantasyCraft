@@ -45,7 +45,7 @@ public class VoidCerqian extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " Void Cerqian - Arcane Phase");
+    meta.setDisplayName(ChatColor.RED + " Void Cerqian - Arcane Phase");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      Void Cerqians have focused on ");

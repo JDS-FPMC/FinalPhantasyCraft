@@ -55,12 +55,6 @@ public class CmdSetLinValue implements IFunction {
     // Everything validated - get player attributes
     HashMap<String, Integer> playerAttribs = fpcPlayer.getPlayerData().getAttributeData();
 
-    // TODO: Change this to a string reverse method
-    // Set new values to Lin attributes
-    //   - Lin strings are opposite of each other:
-    //   dm == 8   ==>   md == 0
-    //   sa == 5   ==>   as == 3
-
     // Set new values to Lin attributes
     switch (lin.toLowerCase()) {
       case "dm":

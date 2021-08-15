@@ -43,7 +43,7 @@ public class UnAwakened extends RPGClass {
     // Set up the icon metadata
     ItemStack iconLore = new ItemStack(Material.SKULL);
     ItemMeta meta = iconLore.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " - The UnAwakened");
+    meta.setDisplayName(ChatColor.RED + " - The UnAwakened");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + " The UnAwakened are the roaming spirits");

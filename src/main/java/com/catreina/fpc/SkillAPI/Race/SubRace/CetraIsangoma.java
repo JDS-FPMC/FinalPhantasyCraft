@@ -41,7 +41,7 @@ public class CetraIsangoma extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " Cetra Isangoma - Mechanical Phase ");
+    meta.setDisplayName(ChatColor.RED + " Cetra Isangoma - Mechanical Phase ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      The Cetra Isangoma are an extremely calm and ");

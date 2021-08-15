@@ -46,7 +46,7 @@ public class CmdConfirmFacetAllocation implements IFunction {
     fpcPlayer.getPlayerData().giveAttribute("growth", (playerAttribs.get("at") + playerAttribs.get("am")));
 
     // Resilience - Technical Aspect:
-    fpcPlayer.getPlayerData().giveAttribute("resilience", (playerAttribs.get("ta") + playerAttribs.get("at")));
+    fpcPlayer.getPlayerData().giveAttribute("resilience", (playerAttribs.get("ta") + playerAttribs.get("ts")));
 
     // Conviction - Spiritual Aspect:
     fpcPlayer.getPlayerData().giveAttribute("conviction", (playerAttribs.get("st") + playerAttribs.get("sd")));

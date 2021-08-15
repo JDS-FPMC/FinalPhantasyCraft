@@ -24,7 +24,7 @@ public class Human extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " The Technical Aspect - Humans ");
+    meta.setDisplayName(ChatColor.RED + " The Technical Aspect - Humans ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      Humans are most connected to the Technical ");

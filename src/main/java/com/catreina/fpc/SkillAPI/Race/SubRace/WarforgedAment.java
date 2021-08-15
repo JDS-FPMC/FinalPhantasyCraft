@@ -41,7 +41,7 @@ public class WarforgedAment extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " Warforged Ament - Spiritual Phase ");
+    meta.setDisplayName(ChatColor.RED + "" + " Warforged Ament - Spiritual Phase ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      Once organic, their creators deemed the hosts ");

@@ -24,7 +24,7 @@ public class Warforged extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " The Mechanical Aspect - Warforged ");
+    meta.setDisplayName(ChatColor.RED + " The Mechanical Aspect - Warforged ");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      The Warforged are unique in that they are beings ");

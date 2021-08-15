@@ -24,7 +24,7 @@ public class Cerqian extends RPGClass {
     // Set up the icon metadata
     ItemStack icon = new ItemStack(Material.BANNER);
     ItemMeta meta = icon.getItemMeta();
-    meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + " The Dimensional Aspect - Cerqians");
+    meta.setDisplayName(ChatColor.RED + " The Dimensional Aspect - Cerqians");
     meta.setLore(new ArrayList<String>() {{
       add("");
       add(ChatColor.GOLD + "" + ChatColor.ITALIC + "      The Cerqian race are likely indigenous to");

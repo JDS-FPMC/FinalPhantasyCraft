@@ -58,17 +58,11 @@ public class FPCPlayer {
     aspect = aspect.toLowerCase();
 
     // Verify that we are indeed only acquiring an Aspect value
-    if (!(ASPECT_TYPES.contains(aspect))) {
+    if (ASPECT_TYPES.contains(aspect)) {
       // Player doesn't have the aspect, or the passed value is not an aspect
-      return invalidValue("ASPECT", aspect);
-    }
-
-    // Gets the aspect related to the passed key
-    if (playerData.hasAttribute(aspect)) {
       return String.valueOf(playerData.getAttribute(aspect));
     }
 
-    // Should not get here, but if we do...
     return invalidValue("ASPECT", aspect);
   }
 
@@ -78,7 +72,7 @@ public class FPCPlayer {
 
     // Verify that we are acquiring a Lin Facet value
     if (!playerData.getAttributeData().containsKey(lin) || !LIN_TYPES.contains(lin)) {
-      // player doesnt have the lin, or the pased value is not a valid lin
+      // player doesn't have the lin, or the passed value is not a valid lin
       return invalidValue("LIN", lin);
     }
 
@@ -175,7 +169,7 @@ public class FPCPlayer {
     aspect = aspect.toLowerCase();
 
     // Gets the aspect related to the passed key
-    if (playerData.hasAttribute(aspect) && ASPECT_TYPES.contains(aspect)) {
+    if (ASPECT_TYPES.contains(aspect)) {
       int linLeft;
       int linRight;
 
@@ -208,8 +202,8 @@ public class FPCPlayer {
 
         default:
           // There's an error - set a really bad value to show it.
-          linLeft = 0;
-          linRight = -99999;
+          linLeft = -250;
+          linRight = -250;
       }
 
       // Add the facet value to the aspect base value and return the result
